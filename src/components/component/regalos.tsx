@@ -25,114 +25,93 @@ To read more about using these font, please visit the Next.js documentation:
 **/
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { SVGProps, useState } from "react"
 
 export function Regalos() {
   const products = [
     {
       id: 1,
-      image: "/placeholder.svg",
-      title: "Producto 1",
-      description: "Descripción del producto 1",
+      image: "9.jpg",
+      title: "Mini picnic",
+      description: "30.000",
     },
     {
       id: 2,
-      image: "/placeholder.svg",
-      title: "Producto 2",
-      description: "Descripción del producto 2",
+      image: "5.jpg",
+      title: "Caja decorativa",
+      description: "10.000",
     },
     {
       id: 3,
-      image: "/placeholder.svg",
-      title: "Producto 3",
-      description: "Descripción del producto 3",
+      image: "6.jpg",
+      title: "Ancheta 1",
+      description: "45.000",
     },
     {
       id: 4,
-      image: "/placeholder.svg",
-      title: "Producto 4",
-      description: "Descripción del producto 4",
+      image: "7.jpg",
+      title: "Ancheta 2",
+      description: "50.000",
     },
     {
       id: 5,
-      image: "/placeholder.svg",
-      title: "Producto 5",
-      description: "Descripción del producto 5",
+      image: "8.jpg",
+      title: "Ancheta 3",
+      description: "50.000",
     },
     {
       id: 6,
-      image: "/placeholder.svg",
-      title: "Producto 6",
-      description: "Descripción del producto 6",
+      image: "9.jpg",
+      title: "Ancheta 4",
+      description: "50.000",
     },
     {
       id: 7,
-      image: "/placeholder.svg",
-      title: "Producto 7",
-      description: "Descripción del producto 7",
+      image: "10.jpg",
+      title: "Ancheta 5",
+      description: "55.000",
     },
     {
       id: 8,
-      image: "/placeholder.svg",
-      title: "Producto 8",
-      description: "Descripción del producto 8",
+      image: "Caja_de_Regalo_Decorativa.jpg",
+      title: "Caja de Regalo Decorativa",
+      description: "5.000",
     },
     {
       id: 9,
-      image: "/placeholder.svg",
-      title: "Producto 9",
-      description: "Descripción del producto 9",
+      image: "Taza_Personalizada.jpg",
+      title: "Taza Personalizada",
+      description: "15.000",
     },
     {
       id: 10,
-      image: "/placeholder.svg",
-      title: "Producto 10",
-      description: "Descripción del producto 10",
-    },
-    {
-      id: 11,
-      image: "/placeholder.svg",
-      title: "Producto 11",
-      description: "Descripción del producto 11",
-    },
-    {
-      id: 12,
-      image: "/placeholder.svg",
-      title: "Producto 12",
-      description: "Descripción del producto 12",
-    },
-    {
-      id: 13,
-      image: "/placeholder.svg",
-      title: "Producto 13",
-      description: "Descripción del producto 13",
-    },
-    {
-      id: 14,
-      image: "/placeholder.svg",
-      title: "Producto 14",
-      description: "Descripción del producto 14",
-    },
-    {
-      id: 15,
-      image: "/placeholder.svg",
-      title: "Producto 15",
-      description: "Descripción del producto 15",
+      image: "Portarretratos.webp",
+      title: "Portarretratos",
+      description: "30.000",
     },
   ]
+
   const [searchTerm, setSearchTerm] = useState("")
   const [cartCount, setCartCount] = useState(0)
-  const handleSearch = (event) => {
+  const [showAlert, setShowAlert] = useState(false)
+
+  const handleSearch = (event: React.ChangeEvent<HTMLInputElement>) => {
     setSearchTerm(event.target.value)
   }
+
   const handleAddToCart = () => {
     setCartCount(cartCount + 1)
+    setShowAlert(true) // Mostrar alerta cuando se agrega al carrito
   }
-  const filteredProducts = products.filter((product) => product.title.toLowerCase().includes(searchTerm.toLowerCase()))
+
+  const filteredProducts = products.filter((product) => 
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
   return (
     <div>
       <header className="bg-primary text-primary-foreground py-4 px-6">
@@ -168,8 +147,8 @@ export function Regalos() {
               )}
               <span className="sr-only">Cart</span>
             </Button>
-            {cartCount > 0 && (
-              <Alert variant="default" className="ml-4 hidden sm:flex" onClose={() => setCartCount(0)}>
+            {showAlert && cartCount > 0 && (
+              <Alert variant="default" className="ml-4 hidden sm:flex">
                 <CircleCheckIcon className="h-5 w-5 mr-2" />
                 <AlertDescription>{cartCount} producto(s) agregado(s) al carrito.</AlertDescription>
               </Alert>
@@ -181,7 +160,7 @@ export function Regalos() {
         {filteredProducts.map((product) => (
           <div key={product.id} className="bg-background rounded-lg shadow-md overflow-hidden">
             <img
-              src="/placeholder.svg"
+              src={`/${product.image}`} // Usar el nombre de archivo del producto
               alt={product.title}
               width={300}
               height={200}
@@ -233,7 +212,7 @@ export function Regalos() {
             <h3 className="text-lg font-bold mb-2">Contáctanos</h3>
             <ul className="space-y-1">
               <li>Teléfono: 3105751123</li>
-              <li>Instagram: https://www.instagram.com/detalles.omega?igsh=MXVvM3lxMTViY2tzMw==</li>
+              <li>Instagram: <a href="https://www.instagram.com/detalles.omega?igsh=MXVvM3lxMTViY2tzMw==" className="underline" target="_blank" rel="noopener noreferrer">Instagram</a></li>
               <li>Dirección: Carrera 100 #139, Bogotá, Colombia</li>
             </ul>
           </div>
@@ -251,7 +230,7 @@ export function Regalos() {
   )
 }
 
-function CircleCheckIcon(props) {
+function CircleCheckIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -271,8 +250,7 @@ function CircleCheckIcon(props) {
   )
 }
 
-
-function SearchIcon(props) {
+function SearchIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -292,8 +270,7 @@ function SearchIcon(props) {
   )
 }
 
-
-function ShoppingCartIcon(props) {
+function ShoppingCartIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}

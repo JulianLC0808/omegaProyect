@@ -25,114 +25,123 @@ To read more about using these font, please visit the Next.js documentation:
 **/
 "use client"
 
-import { useState } from "react"
 import Link from "next/link"
 import { Input } from "@/components/ui/input"
 import { Button } from "@/components/ui/button"
 import { Alert, AlertDescription } from "@/components/ui/alert"
+import { useState, SetStateAction, SVGProps } from "react"
 
 export function Papeleria() {
   const products = [
     {
       id: 1,
-      image: "/placeholder.svg",
-      title: "Producto 1",
-      description: "Descripción del producto 1",
+      image: "Calculadora de Mano.jpg",
+      title: "Calculadora",
+      description: "8.000",
     },
     {
       id: 2,
-      image: "/placeholder.svg",
-      title: "Producto 2",
-      description: "Descripción del producto 2",
+      image: "Carpeta con cierre",
+      title: "Carpeta con cierre",
+      description: "3.000",
     },
     {
       id: 3,
-      image: "/placeholder.svg",
-      title: "Producto 3",
-      description: "Descripción del producto 3",
+      image: "Cartulina.webp",
+      title: "Cartulinas de colores",
+      description: "2.000",
     },
     {
       id: 4,
-      image: "/placeholder.svg",
-      title: "Producto 4",
-      description: "Descripción del producto 4",
+      image: "Cinta Adhesiva.webp",
+      title: "Cinta Adhesiva",
+      description: "7.500",
     },
     {
       id: 5,
-      image: "/placeholder.svg",
-      title: "Producto 5",
-      description: "Descripción del producto 5",
+      image: "Corrector en Pasta.jpg",
+      title: "Corrector liquido",
+      description: "3.200",
     },
     {
       id: 6,
-      image: "/placeholder.svg",
-      title: "Producto 6",
-      description: "Descripción del producto 6",
+      image: "Cuaderno de Notas.jpg",
+      title: "Cuaderno argollado",
+      description: "11.500",
     },
     {
       id: 7,
-      image: "/placeholder.svg",
-      title: "Producto 7",
-      description: "Descripción del producto 7",
+      image: "Escuadra y Cartabon.jpg",
+      title: "Escuadra y Cartabon.",
+      description: "5.300",
     },
     {
       id: 8,
-      image: "/placeholder.svg",
-      title: "Producto 8",
-      description: "Descripción del producto 8",
+      image: "Grapadora.jpg",
+      title: "Grapadora",
+      description: "22.000",
     },
     {
       id: 9,
-      image: "/placeholder.svg",
-      title: "Producto 9",
-      description: "Descripción del producto 9",
+      image: "Lápices de Colores.jpg",
+      title: "Lápices de Colores.",
+      description: "50.000",
     },
     {
       id: 10,
-      image: "/placeholder.svg",
-      title: "Producto 10",
-      description: "Descripción del producto 10",
+      image: "Marcadores de Colores.avif",
+      title: "Marcadores de Colores.",
+      description: "45.600",
     },
     {
       id: 11,
-      image: "/placeholder.svg",
-      title: "Producto 11",
-      description: "Descripción del producto 11",
+      image: "Marcadores para Pizarra.wepb",
+      title: "Marcadores para tablero",
+      description: "8.000",
     },
     {
       id: 12,
-      image: "/placeholder.svg",
-      title: "Producto 12",
-      description: "Descripción del producto 12",
+      image: "Pegamento en Barra.png",
+      title: "Pegamento en Barra",
+      description: "3.600",
     },
     {
       id: 13,
-      image: "/placeholder.svg",
-      title: "Producto 13",
-      description: "Descripción del producto 13",
+      image: "Regla de Plástico.webp",
+      title: "Regla de Plástico",
+      description: "4.000",
     },
     {
       id: 14,
-      image: "/placeholder.svg",
-      title: "Producto 14",
-      description: "Descripción del producto 14",
+      image: "Resaltadores.webp",
+      title: "Resaltadores",
+      description: "5.000",
     },
     {
       id: 15,
-      image: "/placeholder.svg",
-      title: "Producto 15",
-      description: "Descripción del producto 15",
+      image: "Tijeras de Oficina.jpg",
+      title: "Tijeras",
+      description: "4.000",
     },
   ]
+
   const [searchTerm, setSearchTerm] = useState("")
   const [cartCount, setCartCount] = useState(0)
-  const handleSearch = (event) => {
+  const [showAlert, setShowAlert] = useState(false)
+
+  const handleSearch = (event: { target: { value: SetStateAction<string> } }) => {
     setSearchTerm(event.target.value)
   }
+
   const handleAddToCart = () => {
     setCartCount(cartCount + 1)
+    setShowAlert(true) // Mostrar alerta cuando se agrega al carrito
   }
-  const filteredProducts = products.filter((product) => product.title.toLowerCase().includes(searchTerm.toLowerCase()))
+
+  const filteredProducts = products.filter((product) =>
+    product.title.toLowerCase().includes(searchTerm.toLowerCase())
+  )
+
   return (
     <div>
       <header className="bg-primary text-primary-foreground py-4 px-6">
@@ -168,8 +177,8 @@ export function Papeleria() {
               )}
               <span className="sr-only">Cart</span>
             </Button>
-            {cartCount > 0 && (
-              <Alert variant="default" className="ml-4 hidden sm:flex" onClose={() => setCartCount(0)}>
+            {showAlert && cartCount > 0 && (
+              <Alert variant="default" className="ml-4 hidden sm:flex">
                 <CircleCheckIcon className="h-5 w-5 mr-2" />
                 <AlertDescription>{cartCount} producto(s) agregado(s) al carrito.</AlertDescription>
               </Alert>
@@ -181,7 +190,7 @@ export function Papeleria() {
         {filteredProducts.map((product) => (
           <div key={product.id} className="bg-background rounded-lg shadow-md overflow-hidden">
             <img
-              src="/placeholder.svg"
+              src={`/${product.image}`} // Usar el nombre de archivo del producto
               alt={product.title}
               width={300}
               height={200}
@@ -233,7 +242,7 @@ export function Papeleria() {
             <h3 className="text-lg font-bold mb-2">Contáctanos</h3>
             <ul className="space-y-1">
               <li>Teléfono: 3105751123</li>
-              <li>Instagram: https://www.instagram.com/detalles.omega?igsh=MXVvM3lxMTViY2tzMw==</li>
+              <li>Instagram: <a href="https://www.instagram.com/detalles.omega?igsh=MXVvM3lxMTViY2tzMw==" target="_blank" rel="noopener noreferrer">Instagram</a></li>
               <li>Dirección: Carrera 100 #139, Bogotá, Colombia</li>
             </ul>
           </div>
@@ -251,7 +260,7 @@ export function Papeleria() {
   )
 }
 
-function CircleCheckIcon(props) {
+function CircleCheckIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -271,8 +280,7 @@ function CircleCheckIcon(props) {
   )
 }
 
-
-function SearchIcon(props) {
+function SearchIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -292,8 +300,7 @@ function SearchIcon(props) {
   )
 }
 
-
-function ShoppingCartIcon(props) {
+function ShoppingCartIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}

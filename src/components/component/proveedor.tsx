@@ -55,18 +55,17 @@ export function Proveedor() {
             <div className="grid gap-4">
               <div>
                 <h3 className="text-lg font-medium">Nombre</h3>
-                <p>Acme Supplies Inc.</p>
+                <p>Jarol Moreno</p>
               </div>
               <div>
                 <h3 className="text-lg font-medium">Contacto</h3>
                 <p>John Doe</p>
-                <p>john@acmesupplies.com</p>
-                <p>+1 (555) 123-4567</p>
+                <p>3105751123</p>
               </div>
               <div>
                 <h3 className="text-lg font-medium">Dirección</h3>
-                <p>123 Main St.</p>
-                <p>Anytown, USA 12345</p>
+                <p>Bogota, Colombia</p>
+                <p>Carrera 100 #139</p>
               </div>
             </div>
           </div>
@@ -83,14 +82,14 @@ export function Proveedor() {
                 </thead>
                 <tbody>
                   <tr className="border-b">
-                    <td className="px-4 py-3 font-medium">Lámpara de escritorio</td>
+                    <td className="px-4 py-3 font-medium">Cuadernos Norma</td>
                     <td className="px-4 py-3 text-right">25</td>
                     <td className="px-4 py-3">
                       <Badge variant="secondary">Pendiente</Badge>
                     </td>
                   </tr>
                   <tr className="border-b">
-                    <td className="px-4 py-3 font-medium">Taza de café</td>
+                    <td className="px-4 py-3 font-medium">Chocolates</td>
                     <td className="px-4 py-3 text-right">12</td>
                     <td className="px-4 py-3">
                       <Badge variant="outline">En proceso</Badge>
@@ -111,7 +110,7 @@ export function Proveedor() {
                     </td>
                   </tr>
                   <tr className="border-b">
-                    <td className="px-4 py-3 font-medium">Reloj de pared</td>
+                    <td className="px-4 py-3 font-medium">Caja de bloks para impresora</td>
                     <td className="px-4 py-3 text-right">3</td>
                     <td className="px-4 py-3">
                       <Badge variant="outline">En proceso</Badge>
