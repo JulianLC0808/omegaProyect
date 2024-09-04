@@ -6,7 +6,7 @@ import React from 'react'
 function page() {
   return (
     <div>
-        < Navbar/>
+        <Navbar />
         < Inventario/>
         < Footer/>
     </div>

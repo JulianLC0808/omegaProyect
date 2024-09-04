@@ -20,6 +20,7 @@ To read more about using these font, please visit the Next.js documentation:
 
 import { Carousel, CarouselContent, CarouselItem, CarouselPrevious, CarouselNext } from "@/components/ui/carousel"
 import { Button } from "@/components/ui/button"
+import Link from "next/link"
 
 export function Main() {
   return (
@@ -115,14 +116,16 @@ export function Main() {
               </div>
             ))}
           </div>
-          <div className="flex justify-center mt-8">
-            <Button variant="outline">Ver más</Button>
-          </div>
+          <Link href="/papeleria" >
+            <div className="flex justify-center mt-8">
+              <Button variant="outline">Ver más</Button>
+            </div>
+          </Link>
         </div>
       </section>
 
       {/* Second Carousel */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden pb-8">
         <Carousel className="w-full max-w-6xl mx-auto" opts={{ loop: true }}>
           <CarouselContent>
             {[
@@ -205,7 +208,7 @@ export function Main() {
       </section>
 
       {/* Third Carousel */}
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden p-6">
         <Carousel className="w-full max-w-6xl mx-auto" opts={{ loop: true }}>
           <CarouselContent>
             {[
