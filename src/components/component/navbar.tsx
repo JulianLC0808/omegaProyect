@@ -5,6 +5,7 @@ import { NavigationMenu, NavigationMenuList, NavigationMenuLink } from "@/compon
 import { Input } from "@/components/ui/input";
 import { DropdownMenu, DropdownMenuTrigger, DropdownMenuContent, DropdownMenuItem } from "@/components/ui/dropdown-menu";
 import { Popover, PopoverTrigger, PopoverContent } from "@/components/ui/popover";
+import { JSX, SVGProps } from "react";
 
 export function Navbar() {
   return (
@@ -19,7 +20,7 @@ export function Navbar() {
         <SheetContent side="left">
           <Link href="/m" className="flex items-center gap-2" prefetch={false}>
             <img
-              src="/images/logo.png" // Ruta de tu imagen
+              src="/Logos.png" // Ruta correcta para la imagen en Next.js
               alt="Acme Inc"
               className="h-6 w-auto"
             />
@@ -44,9 +45,9 @@ export function Navbar() {
       <div className="w-[150px] hidden lg:flex">
         <Link href="#" className="flex items-center gap-2" prefetch={false}>
           <img
-            src="/images/logo.png" // Ruta de tu imagen
+            src="/Logos.png" // Ruta correcta para la imagen en Next.js
             alt="Acme Inc"
-            className="h-6 w-auto"
+            className="h-20 w-auto"
           />
           <span />
         </Link>
@@ -60,7 +61,7 @@ export function Navbar() {
                 className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                 prefetch={false}
               >
-                Home
+                Inicio
               </Link>
             </NavigationMenuLink>
             <NavigationMenuLink asChild>
@@ -69,7 +70,7 @@ export function Navbar() {
                 className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                 prefetch={false}
               >
-                About
+                Sobre nosotros
               </Link>
             </NavigationMenuLink>
             <NavigationMenuLink asChild>
@@ -78,7 +79,7 @@ export function Navbar() {
                 className="group inline-flex h-9 w-max items-center justify-center rounded-md bg-background px-4 py-2 text-sm font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground focus:outline-none disabled:pointer-events-none disabled:opacity-50 data-[active]:bg-accent/50 data-[state=open]:bg-accent/50"
                 prefetch={false}
               >
-                Services
+                Portafolio
               </Link>
             </NavigationMenuLink>
             <NavigationMenuLink asChild />
@@ -98,7 +99,7 @@ export function Navbar() {
           <DropdownMenuTrigger asChild>
             <Button variant="outline" size="icon" className="overflow-hidden rounded-full">
               <img
-                src="/placeholder.svg"
+                src="/usuario.jpg"
                 width={36}
                 height={36}
                 alt="Avatar"
@@ -108,8 +109,8 @@ export function Navbar() {
             </Button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
-            <DropdownMenuItem>Login</DropdownMenuItem>
-            <DropdownMenuItem>Register</DropdownMenuItem>
+            <DropdownMenuItem>Registrate</DropdownMenuItem>
+            <DropdownMenuItem>Crea tu cuenta</DropdownMenuItem>
           </DropdownMenuContent>
         </DropdownMenu>
         <Popover>
@@ -179,7 +180,7 @@ export function Navbar() {
   );
 }
 
-function MenuIcon(props) {
+function MenuIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -200,67 +201,7 @@ function MenuIcon(props) {
   );
 }
 
-// Los demás íconos permanecen igual
-
-function MinusIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-    </svg>
-  );
-}
-
-function MountainIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="m8 3 4 8 5-5 5 15H2L8 3z" />
-    </svg>
-  );
-}
-
-function PlusIcon(props) {
-  return (
-    <svg
-      {...props}
-      xmlns="http://www.w3.org/2000/svg"
-      width="24"
-      height="24"
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth="2"
-      strokeLinecap="round"
-      strokeLinejoin="round"
-    >
-      <path d="M5 12h14" />
-      <path d="M12 5v14" />
-    </svg>
-  );
-}
-
-function SearchIcon(props) {
+function SearchIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -275,12 +216,12 @@ function SearchIcon(props) {
       strokeLinejoin="round"
     >
       <circle cx="11" cy="11" r="8" />
-      <path d="m21 21-4.3-4.3" />
+      <line x1="21" x2="16.65" y1="21" y2="16.65" />
     </svg>
   );
 }
 
-function ShoppingCartIcon(props) {
+function ShoppingCartIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
   return (
     <svg
       {...props}
@@ -294,9 +235,48 @@ function ShoppingCartIcon(props) {
       strokeLinecap="round"
       strokeLinejoin="round"
     >
-      <circle cx="8" cy="21" r="1" />
-      <circle cx="19" cy="21" r="1" />
-      <path d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12" />
+      <circle cx="9" cy="21" r="1" />
+      <circle cx="20" cy="21" r="1" />
+      <path d="M1 1h4l1.68 9.39a5 5 0 005 4.61h7.72a5 5 0 005-4.61L23 6H6" />
+    </svg>
+  );
+}
+
+function MinusIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="5" x2="19" y1="12" y2="12" />
+    </svg>
+  );
+}
+
+function PlusIcon(props: JSX.IntrinsicAttributes & SVGProps<SVGSVGElement>) {
+  return (
+    <svg
+      {...props}
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="2"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <line x1="12" x2="12" y1="5" y2="19" />
+      <line x1="5" x2="19" y1="12" y2="12" />
     </svg>
   );
 }
